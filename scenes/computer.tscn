@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxjc0eev4gjnh"]
+
+[ext_resource type="Texture2D" uid="uid://dnh02qwvhlfi6" path="res://sprites/interactable/generator.png" id="1_5h88d"]
+[ext_resource type="Script" path="res://scripts/interactable/computer.gd" id="1_k70gu"]
+[ext_resource type="PackedScene" uid="uid://cibtmdg0rl7jk" path="res://scenes/text_box.tscn" id="2_6y5sq"]
+[ext_resource type="AudioStream" uid="uid://yqm7wh4osg7k" path="res://audio/fix.wav" id="3_g1kev"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3gu4"]
+atlas = ExtResource("1_5h88d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4ubj"]
+atlas = ExtResource("1_5h88d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7q50l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3gu4")
+}],
+"loop": false,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s4ubj")
+}],
+"loop": false,
+"name": &"fixed",
+"speed": 5.0
+}]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gcg0n"]
+polygon = PackedVector2Array(-14, 32, -14, 30, -12, 30, -12, 16, -10, 16, -10, 0, -12, 0, -12, -2, -16, -2, -16, -4, -18, -4, -18, -2, -20, -2, -20, 0, -22, 0, -22, 2, -24, 2, -24, 0, -26, 0, -26, 2, -28, 2, -28, 0, -30, 0, -30, -2, -28, -2, -28, -4, -30, -4, -30, -6, -28, -6, -28, -8, -26, -8, -26, -10, -24, -10, -24, -14, -22, -14, -22, -28, -24, -28, -24, -30, -22, -30, -22, -32, 22, -32, 22, -30, 24, -30, 24, -28, 22, -28, 22, -14, 24, -14, 24, -10, 26, -10, 26, -8, 28, -8, 28, -6, 30, -6, 30, -4, 28, -4, 28, -2, 30, -2, 30, 0, 28, 0, 28, 2, 26, 2, 26, 0, 24, 0, 24, 2, 22, 2, 22, 0, 20, 0, 20, -2, 18, -2, 18, -4, 16, -4, 16, -2, 12, -2, 12, 0, 10, 0, 10, 16, 12, 16, 12, 30, 14, 30, 14, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqcd2"]
+size = Vector2(14, 32)
+
+[node name="Computer" type="Node2D" node_paths=PackedStringArray("animation", "fix_sfx")]
+script = ExtResource("1_k70gu")
+text_box_scene = ExtResource("2_6y5sq")
+animation = NodePath("Sprite")
+fix_sfx = NodePath("FixSFX")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7q50l")
+animation = &"fixed"
+autoplay = "broken"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(0.5, 0.5)
+occluder = SubResource("OccluderPolygon2D_gcg0n")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_vqcd2")
+
+[node name="FixSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g1kev")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
