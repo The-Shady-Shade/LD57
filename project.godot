@@ -11,17 +11,23 @@ config_version=5
 [application]
 
 config/name="Tiny Tinker"
-config/description="Ludum Dare 57 submission"
+config/description="Simple platformer, where you have to fix some computers.
+
+“Jump into a big robot to fix him!
+Everytime you have to go deeper and deeper.
+What’s waiting you in the end?”
+
+Made during Ludum Dare 57 game jam by ShadyShade."
 config/version="1.0.0"
-run/main_scene="res://scenes/cutscene.tscn"
+run/main_scene="res://scenes/maps/cutscene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
-config/icon="res://sprites/artwork/icon.png"
-config/windows_native_icon="res://sprites/artwork/icon.ico"
+config/icon="res://sprites/artwork/icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://audio/sfx_bus.tres"
+buses/default_bus_layout="res://audio/sfx/sfx_bus.tres"
 
 [autoload]
 
@@ -32,7 +38,6 @@ dialog_manager="*res://scripts/singletones/dialog_manager.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="viewport"
 
 [input]

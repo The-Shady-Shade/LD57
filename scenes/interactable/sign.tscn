@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0e6sjec3mpn1"]
+
+[ext_resource type="Script" path="res://scripts/interactable/sign.gd" id="1_fmu4g"]
+[ext_resource type="Texture2D" uid="uid://ov8ugto35wsj" path="res://sprites/interactable/sign.png" id="1_jmuum"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebbw7"]
+size = Vector2(10, 30)
+
+[node name="Sign" type="Node2D"]
+script = ExtResource("1_fmu4g")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_jmuum")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ebbw7")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

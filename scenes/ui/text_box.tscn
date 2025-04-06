@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cibtmdg0rl7jk"]
+
+[ext_resource type="Script" path="res://scripts/ui/text_box.gd" id="1_d4fbf"]
+[ext_resource type="Texture2D" uid="uid://2wqdfabuabsy" path="res://sprites/ui/text_box.png" id="2_4iour"]
+[ext_resource type="FontFile" uid="uid://qn5qrqlikp8u" path="res://resources/wanted.ttf" id="3_mcpww"]
+[ext_resource type="AudioStream" uid="uid://dhmf4btfv2mdu" path="res://audio/sfx/text.wav" id="4_a6yyw"]
+
+[node name="TextBox" type="MarginContainer" node_paths=PackedStringArray("label", "timer", "text_sfx")]
+offset_right = 16.0
+offset_bottom = 31.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_d4fbf")
+label = NodePath("MarginContainer/Label")
+timer = NodePath("LetterDisplayTimer")
+text_sfx = NodePath("TextSFX")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_4iour")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_mcpww")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TextSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a6yyw")
+volume_db = -8.569
+bus = &"SFX"
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

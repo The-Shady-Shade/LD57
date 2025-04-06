@@ -1,6 +1,8 @@
 extends Node
 
-var text_box_scene: PackedScene = preload("res://scenes/text_box.tscn")
+signal finished
+
+var text_box_scene: PackedScene = preload("res://scenes/ui/text_box.tscn")
 var text_box: MarginContainer
 var text_box_position: Vector2
 var dialog_lines: Array[String] = []
@@ -13,8 +15,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		text_box.queue_free()
 		current_line_index += 1
 		if current_line_index >= dialog_lines.size():
-			dialog_active = false
+			finished.emit()
 			current_line_index = 0
+			dialog_active = false
 			return
 		show_text_box()
 
