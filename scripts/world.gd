@@ -9,6 +9,7 @@ func _process(_delta: float) -> void:
 	if global.destroy:
 		await get_tree().create_timer(5).timeout
 		get_tree().change_scene_to_packed(ending_scene)
+	
 	elif !system_malfunction_soundtrack.playing && !circuits_dance_soundtrack.playing && !stack_overflow_soundtrack.playing:
 		var soundtrack: int = randi_range(1, 3)
 		match soundtrack:

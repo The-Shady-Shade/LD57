@@ -41,7 +41,7 @@ one_shot = true
 
 [node name="TextSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_a6yyw")
-volume_db = -8.569
+volume_db = -20.0
 bus = &"SFX"
 
 [connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

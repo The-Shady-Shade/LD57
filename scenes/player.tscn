@@ -199,7 +199,10 @@ explosiveness = 1.0
 
 [node name="BoostSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_axs4s")
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="DeadSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_3weh5")
+volume_db = -15.0
 bus = &"SFX"

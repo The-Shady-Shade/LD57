@@ -417,9 +417,15 @@ position = Vector2(544, 1016)
 
 [node name="SystemMalfunction" type="AudioStreamPlayer" parent="Soundtrack"]
 stream = ExtResource("10_a2s0q")
+volume_db = -15.0
+bus = &"Soundtrack"
 
 [node name="CircuitsDance" type="AudioStreamPlayer" parent="Soundtrack"]
 stream = ExtResource("11_xmevs")
+volume_db = -15.0
+bus = &"Soundtrack"
 
 [node name="StackOverflow" type="AudioStreamPlayer" parent="Soundtrack"]
 stream = ExtResource("12_3vx2f")
+volume_db = -15.0
+bus = &"Soundtrack"
