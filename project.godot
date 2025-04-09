@@ -19,13 +19,13 @@ What’s waiting you in the end?”
 
 Made during Ludum Dare 57 game jam by ShadyShade."
 config/version="1.0.0"
+config/tags=PackedStringArray("2d", "platformer")
 run/main_scene="res://scenes/maps/cutscene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://sprites/artwork/icon.jpg"
 config/windows_native_icon="res://sprites/artwork/icon.ico"
-config/tags=PackedStringArray("2d", "platformer")
 
 [audio]
 
